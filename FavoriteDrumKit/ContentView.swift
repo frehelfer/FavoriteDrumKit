@@ -37,24 +37,12 @@ struct ContentView: View {
                 
                 List {
                     ForEach(vm.savedEntities) { kit in
-                        HStack {
-                            Text(kit.wrappedName)
-                            
-                            Spacer()
-                            
-                            Button {
-                                vm.updateFavorite(kit: kit)
-                            } label: {
-                                Label("Add to favorite", systemImage: kit.favorite ? "star.fill" : "star")
-                                    .font(.title3)
-                                    .labelStyle(.iconOnly)
-                                    .foregroundColor(kit.favorite ? .yellow : .gray.opacity(0.6))
-                            }
-                        }
+                        DrumKitRowView(vm: vm, kit: kit)
                     }
                     .onDelete(perform: vm.deleteDrumKit)
                 }
             }
+            .navigationTitle("FavoriteDrumKit")
         }
     }
 }
@@ -63,5 +51,27 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .preferredColorScheme(.dark)
+    }
+}
+
+struct DrumKitRowView: View {
+    @ObservedObject var vm: DataController
+    var kit: DrumKitEntity
+    
+    var body: some View {
+        HStack {
+            Text(kit.wrappedName)
+            
+            Spacer()
+            
+            Button {
+                vm.updateFavorite(kit: kit)
+            } label: {
+                Label("Add to favorite", systemImage: kit.favorite ? "star.fill" : "star")
+                    .font(.title3)
+                    .labelStyle(.iconOnly)
+                    .foregroundColor(kit.favorite ? .yellow : .gray.opacity(0.6))
+            }
+        }
     }
 }
