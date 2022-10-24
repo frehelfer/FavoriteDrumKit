@@ -14,4 +14,4 @@ CoreData, MVVM, CRUD Operations.
 
 **Screenshoots :**
 
-<img src="screenshot/screenshot.gif" width="300"/>
+<img src="screenshot/screenshot1.gif" width="300"/>
